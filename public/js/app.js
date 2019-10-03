@@ -1838,9 +1838,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-//
 //
 //
 //
@@ -1884,14 +1881,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     previewTableSorted: function previewTableSorted() {
       var tasks = JSON.parse(this.tasks); // let storeRef = JSON.parse(this.storeRefArray);
 
-      console.log(_typeof(this.storeRefArray));
+      console.log(this.storeRefArray);
       tasks.sort(function (a, b) {
         return a.absolute_day > b.absolute_day ? 1 : -1;
       });
       return tasks;
     },
     ArrangeTask: function ArrangeTask() {
-      console.log(this.previewTableSorted);
+      // console.log(this.previewTableSorted);
       var preArrange = this.previewTableSorted; // sort stories
 
       preArrange.map(function (res) {});
@@ -20187,11 +20184,6 @@ var render = function() {
           "tbody",
           _vm._l(_vm.previewTableSorted, function(task) {
             return _c("tr", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(task) +
-                  "\n                    "
-              ),
               _c("td", [_vm._v(_vm._s(task.absolute_day))]),
               _c("td", [_vm._v(_vm._s(task.name))])
             ])

@@ -24,7 +24,6 @@
                 </thead>
                 <tbody>
                     <tr v-for="task in previewTableSorted">
-                        {{task}}
                         <td>{{task.absolute_day}}</td><td>{{task.name}}</td>
                     </tr>
                 </tbody>
@@ -38,7 +37,6 @@
         props:['tasks','storeRefArray'],
         data(){
             return{
-
             }
         },
         computed:{
@@ -46,13 +44,13 @@
                 let tasks = JSON.parse(this.tasks);
 
                 // let storeRef = JSON.parse(this.storeRefArray);
-                console.log(typeof this.storeRefArray);
+                console.log(this.storeRefArray);
 
                 tasks.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
             return tasks;
             },
             ArrangeTask(){
-                console.log(this.previewTableSorted);
+                // console.log(this.previewTableSorted);
                 let preArrange = this.previewTableSorted;
                 // sort stories
                 preArrange.map((res)=>{

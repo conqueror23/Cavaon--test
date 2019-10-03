@@ -30,8 +30,7 @@
     }
 //    var_dump($storeRefArray);
     $storeRefArray =json_encode($storeRefArray);
-    var_dump($storeRefArray);
-
+//    var_dump($storeRefArray);
     ?>
 
 
