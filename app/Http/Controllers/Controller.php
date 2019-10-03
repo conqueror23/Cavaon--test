@@ -16,17 +16,15 @@ use PhpParser\Node\Expr\Cast\Object_;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function  ShowData(){
+    public function  ShowData()
+    {
         $projects = projects::all();
-        $tasks =project_tasks::all();
-        $stories =stories::all();
-        $data['projects'] =$projects;
-        $data['tasks']=$tasks;
-        $data['stories'] =$stories;
-        var_dump($data['projects']);
-        exit;
+        $tasks = project_tasks::all();
+        $stories = stories::all();
+        $data['projects'] = $projects;
+        $data['tasks'] = $tasks;
+        $data['stories'] = $stories;
 
-        return view('layout.app')->with('data',$data);
+        return view('layout.app', ['data' => $data]);
     }
-
 }

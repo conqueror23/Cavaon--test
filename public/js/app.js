@@ -1850,12 +1850,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Project_Tasks_Page',
-  props: ['data'],
-  data: function data() {},
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  props: ['tasks', 'stories'],
+  data: function data() {
+    return {};
+  },
+  computed: {
+    previewTableSorted: function previewTableSorted() {
+      var tasks = JSON.parse(this.tasks);
+      console.log(this.stories);
+      tasks.sort(function (a, b) {
+        return a.absolute_day > b.absolute_day ? 1 : -1;
+      });
+      return tasks;
+    },
+    ArrangeTask: function ArrangeTask() {
+      console.log(this.previewTableSorted);
+      var preArrange = this.previewTableSorted; // sort stories
+
+      preArrange.map(function (res) {});
+    }
   }
 });
 
@@ -1873,7 +1910,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.wrapper{\n        display: flex;\n        flex:1;\n}\n.wrapper div{\n    border: 1px solid black;\n}\n", ""]);
+exports.push([module.i, "\ntable,tr{\n    border: 1px solid black;\n}\ntable th{\n    background: lightblue;\n    color: white;\n    padding:0.4em;\n}\ntable tr{\n    text-align: center;\n}\n.wrapper{\n    display: flex;\n    flex:1;\n    justify-content: space-around;\n}\n\n", ""]);
 
 // exports
 
@@ -20127,17 +20164,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "wrapper" }, [
+    _c("div", [
+      _c("h2", [_vm._v("Task Remove")]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v("\n        " + _vm._s(_vm.ArrangeTask) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h2", [_vm._v(" Preview")]),
+      _vm._v(" "),
+      _c("table", [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.previewTableSorted, function(task) {
+            return _c("tr", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(task) +
+                  "\n                    "
+              ),
+              _c("td", [_vm._v(_vm._s(task.absolute_day))]),
+              _c("td", [_vm._v(_vm._s(task.name))])
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wrapper" }, [
-      _c("div", [_c("h2", [_vm._v("Task Remove")])]),
+    return _c("div", { staticClass: "content-card" }, [
+      _c("span"),
       _vm._v(" "),
-      _c("div", [_c("h2", [_vm._v(" Preview")])])
+      _c("span", [_vm._v("Day")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Type")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Task/Story Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content-card" }, [
+      _c("span"),
+      _vm._v(" "),
+      _c("span", [_vm._v("Day")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Type")]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Task/Story Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v(" Absolute Day")]),
+      _c("th", [_vm._v(" Name")])
     ])
   }
 ]
@@ -32458,8 +32555,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/wayne/Desktop/backend/Cavaon--test/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/wayne/Desktop/backend/Cavaon--test/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\projects\review_units\Cavaon--test\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\projects\review_units\Cavaon--test\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
