@@ -1,0 +1,9 @@
+body {
+  display: flex;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+}
+
