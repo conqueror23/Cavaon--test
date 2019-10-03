@@ -15,10 +15,30 @@
     $tasks = $data['tasks'];
     $stories = $data['stories'];
 
-
+    $storeRefArray =[];
+    foreach ($stories as $story){
+        $temp = json_decode($story,true);
+        $tempList=$temp['daily_tasks_lisk'];
+        $tempList = json_decode($tempList,true);
+        $refTemp =[];
+        foreach ($tempList as $item ){
+            $refTemp['story']=$temp['name'];
+            $refTemp['relative_day']=$item['relative_day'];
+            $refTemp['task'] =$item['task_name'];
+            array_push($storeRefArray,$refTemp);
+        }
+    }
+//    var_dump($storeRefArray);
+    $storeRefArray =json_encode($storeRefArray);
+    var_dump($storeRefArray);
 
     ?>
-    <project-tasks :stories="'{{$stories}}'"  :tasks="'{{$tasks}}'"></project-tasks>
+
+
+    <project-tasks
+        :storeRefArray="'{{$storeRefArray}}'"
+        :tasks="'{{$tasks}}'"
+    ></project-tasks>
 </div>
 <script type="text/javascript" src="js/app.js"></script>
 </body>

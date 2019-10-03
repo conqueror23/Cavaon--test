@@ -1838,6 +1838,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -1874,14 +1876,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Project_Tasks_Page',
-  props: ['tasks', 'stories'],
+  props: ['tasks', 'storeRefArray'],
   data: function data() {
     return {};
   },
   computed: {
     previewTableSorted: function previewTableSorted() {
-      var tasks = JSON.parse(this.tasks);
-      console.log(this.stories);
+      var tasks = JSON.parse(this.tasks); // let storeRef = JSON.parse(this.storeRefArray);
+
+      console.log(_typeof(this.storeRefArray));
       tasks.sort(function (a, b) {
         return a.absolute_day > b.absolute_day ? 1 : -1;
       });

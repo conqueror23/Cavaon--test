@@ -35,7 +35,7 @@
 <script>
     export default {
         name:'Project_Tasks_Page',
-        props:['tasks','stories'],
+        props:['tasks','storeRefArray'],
         data(){
             return{
 
@@ -44,7 +44,9 @@
         computed:{
             previewTableSorted(){
                 let tasks = JSON.parse(this.tasks);
-                console.log(this.stories);
+
+                // let storeRef = JSON.parse(this.storeRefArray);
+                console.log(typeof this.storeRefArray);
 
                 tasks.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
             return tasks;
