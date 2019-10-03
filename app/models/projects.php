@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class projects extends Model
 {
-    protected $guarded= ['id','name'];
+    protected $guarded= ['id'];
 
     protected $table='projects';
 

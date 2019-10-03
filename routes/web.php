@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/project-tasks-arrangement-page', function () {
+Route::get('/', function () {
+
+
     return view('layout.app');
 });

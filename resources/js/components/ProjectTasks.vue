@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div>
             <h2>Task Remove</h2>
-            {{data}}
+
         </div>
         <div>
             <h2> Preview</h2>
