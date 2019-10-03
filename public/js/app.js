@@ -1834,67 +1834,9 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ProjectTasks.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Project_Tasks_Page',
-  props: ['tasks', 'storeRefArray'],
-  data: function data() {
-    return {};
-  },
-  computed: {
-    previewTableSorted: function previewTableSorted() {
-      var tasks = JSON.parse(this.tasks); // let storeRef = JSON.parse(this.storeRefArray);
-
-      console.log(this.storeRefArray);
-      tasks.sort(function (a, b) {
-        return a.absolute_day > b.absolute_day ? 1 : -1;
-      });
-      return tasks;
-    },
-    ArrangeTask: function ArrangeTask() {
-      // console.log(this.previewTableSorted);
-      var preArrange = this.previewTableSorted; // sort stories
-
-      preArrange.map(function (res) {});
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: F:\\projects\\review_units\\Cavaon--test\\resources\\js\\components\\ProjectTasks.vue: Unexpected token (74:19)\n\n\u001b[0m \u001b[90m 72 | \u001b[39m            console\u001b[33m.\u001b[39mlog(preArrange)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 73 | \u001b[39m            preArrange\u001b[33m.\u001b[39mmap((res)\u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 | \u001b[39m                \u001b[36mif\u001b[39m()\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 75 | \u001b[39m            })\u001b[0m\n\u001b[0m \u001b[90m 76 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 77 | \u001b[39m    }\u001b[0m\n    at Parser.raise (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseExprAtom (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8940:20)\n    at Parser.parseExprSubscripts (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExpression (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8221:23)\n    at Parser.parseHeaderExpression (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10201:22)\n    at Parser.parseIfStatement (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10285:22)\n    at Parser.parseStatementContent (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9977:21)\n    at Parser.parseStatement (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9932:17)\n    at Parser.parseBlockOrModuleBlockBody (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10508:25)\n    at Parser.parseBlockBody (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10495:10)\n    at Parser.parseBlock (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10479:10)\n    at Parser.parseFunctionBody (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9523:24)\n    at Parser.parseArrowExpression (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9464:10)\n    at Parser.parseParenAndDistinguishExpression (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9101:12)\n    at Parser.parseExprAtom (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8861:21)\n    at Parser.parseExprSubscripts (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExprListItem (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:9590:18)\n    at Parser.parseCallExpressionArguments (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8720:22)\n    at Parser.parseSubscript (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8613:29)\n    at Parser.parseSubscripts (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8528:19)\n    at Parser.parseExprSubscripts (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8517:17)\n    at Parser.parseMaybeUnary (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseExpression (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:8221:23)\n    at Parser.parseStatementContent (F:\\projects\\review_units\\Cavaon--test\\node_modules\\@babel\\parser\\lib\\index.js:10061:23)");
 
 /***/ }),
 
@@ -20184,7 +20126,7 @@ var render = function() {
           "tbody",
           _vm._l(_vm.previewTableSorted, function(task) {
             return _c("tr", [
-              _c("td", [_vm._v(_vm._s(task.absolute_day))]),
+              _c("td", [_vm._v(_vm._s(task.order))]),
               _c("td", [_vm._v(_vm._s(task.name))])
             ])
           }),
@@ -32550,8 +32492,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/wayne/Desktop/backend/Cavaon--test/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/wayne/Desktop/backend/Cavaon--test/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\projects\review_units\Cavaon--test\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\projects\review_units\Cavaon--test\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -29,12 +29,13 @@
         }
     }
 //    var_dump($storeRefArray);
-    $storeRefArray =json_encode($storeRefArray);
+    $storeRefArray =json_encode($storeRefArray,true);
 //    var_dump($storeRefArray);
     ?>
 
 
     <project-tasks
+
         :storeRefArray="'{{$storeRefArray}}'"
         :tasks="'{{$tasks}}'"
     ></project-tasks>

@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="task in previewTableSorted">
-                        <td>{{task.absolute_day}}</td><td>{{task.name}}</td>
+                        <td>{{task.order}}</td><td>{{task.name}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -32,9 +32,17 @@
     </div>
 </template>
 <script>
+
+    const searchTask =(value,obj)=>{
+        for(let i =0;i<obj.length;i++){
+            if(obj[i].task==value){
+                return obj[i];
+            }
+        }
+    }
     export default {
         name:'Project_Tasks_Page',
-        props:['tasks','storeRefArray'],
+        props:['tasks','storerefarray'],
         data(){
             return{
             }
@@ -42,22 +50,29 @@
         computed:{
             previewTableSorted(){
                 let tasks = JSON.parse(this.tasks);
-
-                // let storeRef = JSON.parse(this.storeRefArray);
-                console.log(this.storeRefArray);
-
-                tasks.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
-            return tasks;
+                let storeRef = JSON.parse(this.storerefarray);
+                // generate new order
+                let preorderList =tasks;
+                preorderList.map(list=>{
+                    let temp = searchTask(list.name,storeRef);
+                    if(temp){
+                        list.order = list.absolute_day +temp.relative_day;
+                        list.story = temp.story;
+                    }else {
+                        list.order = list.absolute_day;
+                        list.story = null;
+                    }
+                })
+                preorderList.sort((a,b)=>(a.order>b.order)?1:-1);
+            return preorderList;
             },
             ArrangeTask(){
-                // console.log(this.previewTableSorted);
                 let preArrange = this.previewTableSorted;
-                // sort stories
+                // reorganise
+                console.log(preArrange);
                 preArrange.map((res)=>{
-
-
+                    if()
                 })
-
             },
         }
     }
