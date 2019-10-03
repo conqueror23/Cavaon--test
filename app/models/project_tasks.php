@@ -12,11 +12,10 @@ class project_tasks extends Model
     protected $primaryKey ='id';
 
 
-
     private $id;
     private $project_id;
     private $absolute_day;
     private $name;
-    private $story_id ='null';
+    private $story_id =null;
 
 }

@@ -18,7 +18,7 @@ class CreateProjectTasks extends Migration
             $table->unsignedBigInteger('project_id');
             $table->integer('absolute_day');
             $table->string('name');
-            $table->unsignedBigInteger('story_id')->default(0);
+            $table->unsignedBigInteger('story_id')->nullable();
 
             $table->foreign('project_id')
                 ->references('id')
