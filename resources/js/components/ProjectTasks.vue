@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="task in previewTableSorted">
-                        <td>{{task.order}}</td><td>{{task.name}}</td>
+                        <td>{{task.absolute_day}}</td><td>{{task.name}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -32,7 +32,7 @@
     </div>
 </template>
 <script>
-
+// assist functions
     const searchTask =(value,obj)=>{
         for(let i =0;i<obj.length;i++){
             if(obj[i].task==value){
@@ -40,6 +40,19 @@
             }
         }
     }
+    const addStoreCol=(obj,ref)=>{
+        obj.map(list=>{
+            let temp = searchTask(list.name,ref);
+            list.order= list.absolute_day;
+            if(temp){
+                list.story = temp.story;
+            }else {
+                list.story = null;
+            }
+        })
+        return obj
+    }
+
     export default {
         name:'Project_Tasks_Page',
         props:['tasks','storerefarray'],
@@ -51,28 +64,26 @@
             previewTableSorted(){
                 let tasks = JSON.parse(this.tasks);
                 let storeRef = JSON.parse(this.storerefarray);
-                // generate new order
-                let preorderList =tasks;
-                preorderList.map(list=>{
-                    let temp = searchTask(list.name,storeRef);
-                    if(temp){
-                        list.order = list.absolute_day +temp.relative_day;
-                        list.story = temp.story;
-                    }else {
-                        list.order = list.absolute_day;
-                        list.story = null;
-                    }
-                })
-                preorderList.sort((a,b)=>(a.order>b.order)?1:-1);
+                let preorderList =addStoreCol(tasks,storeRef);
+
+                preorderList.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
             return preorderList;
             },
             ArrangeTask(){
                 let preArrange = this.previewTableSorted;
                 // reorganise
-                console.log(preArrange);
-                preArrange.map((res)=>{
-                    if()
-                })
+                // console.log(preArrange);
+                for(let index =0;index<preArrange.length-1;index++){
+                    if(preArrange[index].order ==preArrange[index+1].order ){
+                        console.log(preArrange[index+1])
+                        if(preArrange[index].story !=null){
+
+                        }
+                    // store +1
+                        //other record in same store +1
+                    //   or random +1
+                    }
+                }
             },
         }
     }
