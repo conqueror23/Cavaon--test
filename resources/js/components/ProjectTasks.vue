@@ -8,12 +8,24 @@
                 <span>Type</span>
                 <span>Task/Story Name</span>
             </div>
-            <div class="content-card" >
-                <span></span>
-                <span>Day</span>
-                <span>Type</span>
-                <span>Task/Story Name</span>
-            </div>
+            <draggable
+                :list="previewTableSorted"
+                :move="checkMove"
+                @start ="dragging= true"
+                @end="dragging=false"
+            >
+                <div
+                    v-for="task in previewTableSorted"
+                >
+                    <div v-if="task.story!==null">
+                        <span>BBBB</span> <span>{{task.absolute_day}}</span> <span><input type="text" :placeholder="task.name"></span>
+                    </div>
+                    <div v-else>
+                        <span>BBBB</span> <span>{{task.absolute_day}}</span> <span><input type="text" :placeholder="task.name"></span>
+                    </div>
+                </div>
+            </draggable>
+
             {{ArrangeTask}}
         </div>
         <div>
@@ -32,6 +44,8 @@
     </div>
 </template>
 <script>
+import draggable from 'vuedraggable'
+
 // assist functions
     const searchTask =(value,obj)=>{
         for(let i =0;i<obj.length;i++){
@@ -56,8 +70,12 @@
     export default {
         name:'Project_Tasks_Page',
         props:['tasks','storerefarray'],
+        components:{
+          draggable
+        },
         data(){
             return{
+                reOrder:[],
             }
         },
         computed:{
@@ -66,12 +84,11 @@
                 let storeRef = JSON.parse(this.storerefarray);
                 let preorderList =addStoreCol(tasks,storeRef);
 
-                preorderList.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
+                // preorderList.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
             return preorderList;
             },
             ArrangeTask(){
                 let preArrange = this.previewTableSorted;
-                // reorganise
                 // console.log(preArrange);
                 for(let index =0;index<preArrange.length-1;index++){
                     if(preArrange[index].order ==preArrange[index+1].order ){
@@ -85,6 +102,11 @@
                     }
                 }
             },
+        },
+        methods:{
+            checkMove: function(e) {
+                window.console.log("Future index: " + e.draggedContext.futureIndex);
+            }
         }
     }
 </script>
