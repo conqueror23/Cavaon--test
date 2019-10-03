@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
 
 
-    return view('layout.app');
-});
+Route::get('/','Controller@ShowData');
