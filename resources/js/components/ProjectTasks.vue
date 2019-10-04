@@ -9,22 +9,27 @@
                 <span>Task/Story Name</span>
             </div>
             <draggable
-                :list="previewTableSorted"
+                :list="reOrder"
                 :move="checkMove"
-                @start ="dragging= true"
-                @end="dragging=false"
+                @start ="dragging=false"
+                @end="dragging=true"
+                ghost-class="ghost"
             >
                 <div
-                    v-for="task in previewTableSorted"
+                    class ='records'
+                    v-for="(task,index) in reOrder"
+                    :key="task.id"
                 >
                     <div v-if="task.story!==null">
-                        <span>BBBB</span> <span>{{task.absolute_day}}</span> <span><input type="text" :placeholder="task.name"></span>
+
+                        <div>BBBB</div> <div>{{task.absolute_day}}</div>  <div> <input type="text" :placeholder="task.story" disabled></div>
                     </div>
                     <div v-else>
-                        <span>BBBB</span> <span>{{task.absolute_day}}</span> <span><input type="text" :placeholder="task.name"></span>
+                        <div>BBBB</div> <div>{{task.absolute_day}}</div>  <div> <input type="text" :placeholder="task.name" v-model="reOrder[index].name"></div>
                     </div>
                 </div>
             </draggable>
+            <input type="button"  @click="upLoadStatic" value="Submit"/>
 
             {{ArrangeTask}}
         </div>
@@ -35,8 +40,8 @@
                 <th> Absolute Day</th><th> Name</th>
                 </thead>
                 <tbody>
-                    <tr v-for="task in previewTableSorted">
-                        <td>{{task.absolute_day}}</td><td>{{task.name}}</td>
+                    <tr v-for="(task,index) in reOrder">
+                        <td>{{index+1}}</td><td>{{task.name}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -60,8 +65,10 @@ import draggable from 'vuedraggable'
             list.order= list.absolute_day;
             if(temp){
                 list.story = temp.story;
+                list.relative_day = temp.relative_day;
             }else {
                 list.story = null;
+                list.relative_day = null;
             }
         })
         return obj
@@ -85,6 +92,8 @@ import draggable from 'vuedraggable'
                 let preorderList =addStoreCol(tasks,storeRef);
 
                 // preorderList.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
+                console.log(preorderList)
+                this.reOrder =preorderList;
             return preorderList;
             },
             ArrangeTask(){
@@ -106,11 +115,43 @@ import draggable from 'vuedraggable'
         methods:{
             checkMove: function(e) {
                 window.console.log("Future index: " + e.draggedContext.futureIndex);
+            },
+            upLoadStatic:function(){
+                // console.log(this.reOrder);
+                let upload =  [];
+                this.reOrder.map((record,index)=>{
+                    let temp = {};
+                    temp.id =record['id'];
+                    temp.project_id =record['project_id'];
+                    temp.absolute_day =index+1;
+                    temp.name =record['name'];
+                    temp.story_id =record['story_id'];
+                    upload.push(temp)
+                })
+                //submit sessions
+                //upload is need to submit
+
+                console.log(upload);
             }
         }
     }
 </script>
 <style>
+
+    draggable{
+        display: flex;
+    }
+    .records{
+        display: flex;
+        flex: 1;
+        flex-wrap: nowrap;
+    }
+    .records>div{
+        display:flex;
+        flex:1;
+        justify-content: space-between;
+
+    }
     table,tr{
         border: 1px solid black;
     }
@@ -126,7 +167,10 @@ import draggable from 'vuedraggable'
     .wrapper{
         display: flex;
         flex:1;
-        justify-content: space-around;
+        justify-content: space-between;
     }
-
+    .ghost {
+        opacity: 0.5;
+        background: #c8ebfb;
+    }
 </style>

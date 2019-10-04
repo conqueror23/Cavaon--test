@@ -1885,6 +1885,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
  // assist functions
 
 var searchTask = function searchTask(value, obj) {
@@ -1902,8 +1907,10 @@ var addStoreCol = function addStoreCol(obj, ref) {
 
     if (temp) {
       list.story = temp.story;
+      list.relative_day = temp.relative_day;
     } else {
       list.story = null;
+      list.relative_day = null;
     }
   });
   return obj;
@@ -1926,6 +1933,8 @@ var addStoreCol = function addStoreCol(obj, ref) {
       var storeRef = JSON.parse(this.storerefarray);
       var preorderList = addStoreCol(tasks, storeRef); // preorderList.sort((a,b)=>(a.absolute_day>b.absolute_day)?1:-1);
 
+      console.log(preorderList);
+      this.reOrder = preorderList;
       return preorderList;
     },
     ArrangeTask: function ArrangeTask() {
@@ -1946,6 +1955,22 @@ var addStoreCol = function addStoreCol(obj, ref) {
   methods: {
     checkMove: function checkMove(e) {
       window.console.log("Future index: " + e.draggedContext.futureIndex);
+    },
+    upLoadStatic: function upLoadStatic() {
+      // console.log(this.reOrder);
+      var upload = [];
+      this.reOrder.map(function (record, index) {
+        var temp = {};
+        temp.id = record['id'];
+        temp.project_id = record['project_id'];
+        temp.absolute_day = index + 1;
+        temp.name = record['name'];
+        temp.story_id = record['story_id'];
+        upload.push(temp);
+      }); //submit sessions
+      //upload is need to submit
+
+      console.log(upload);
     }
   }
 });
@@ -1964,7 +1989,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable,tr{\n    border: 1px solid black;\n}\ntable th{\n    background: lightblue;\n    color: white;\n    padding:0.4em;\n}\ntable tr{\n    text-align: center;\n}\n.wrapper{\n    display: flex;\n    flex:1;\n    justify-content: space-around;\n}\n\n", ""]);
+exports.push([module.i, "\ndraggable{\n    display: flex;\n}\n.records{\n    display: flex;\n    flex: 1;\n    flex-wrap: nowrap;\n}\n.records>div{\n    display:flex;\n    flex:1;\n    justify-content: space-between;\n}\ntable,tr{\n    border: 1px solid black;\n}\ntable th{\n    background: lightblue;\n    color: white;\n    padding:0.4em;\n}\ntable tr{\n    text-align: center;\n}\n.wrapper{\n    display: flex;\n    flex:1;\n    justify-content: space-between;\n}\n.ghost {\n    opacity: 0.5;\n    background: #c8ebfb;\n}\n", ""]);
 
 // exports
 
@@ -23938,38 +23963,67 @@ var render = function() {
         _c(
           "draggable",
           {
-            attrs: { list: _vm.previewTableSorted, move: _vm.checkMove },
+            attrs: {
+              list: _vm.reOrder,
+              move: _vm.checkMove,
+              "ghost-class": "ghost"
+            },
             on: {
               start: function($event) {
-                _vm.dragging = true
+                _vm.dragging = false
               },
               end: function($event) {
-                _vm.dragging = false
+                _vm.dragging = true
               }
             }
           },
-          _vm._l(_vm.previewTableSorted, function(task) {
-            return _c("div", [
+          _vm._l(_vm.reOrder, function(task, index) {
+            return _c("div", { key: task.id, staticClass: "records" }, [
               task.story !== null
                 ? _c("div", [
-                    _c("span", [_vm._v("BBBB")]),
+                    _c("div", [_vm._v("BBBB")]),
                     _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(task.absolute_day))]),
+                    _c("div", [_vm._v(_vm._s(task.absolute_day))]),
                     _vm._v(" "),
-                    _c("span", [
+                    _c("div", [
                       _c("input", {
-                        attrs: { type: "text", placeholder: task.name }
+                        attrs: {
+                          type: "text",
+                          placeholder: task.story,
+                          disabled: ""
+                        }
                       })
                     ])
                   ])
                 : _c("div", [
-                    _c("span", [_vm._v("BBBB")]),
+                    _c("div", [_vm._v("BBBB")]),
                     _vm._v(" "),
-                    _c("span", [_vm._v(_vm._s(task.absolute_day))]),
+                    _c("div", [_vm._v(_vm._s(task.absolute_day))]),
                     _vm._v(" "),
-                    _c("span", [
+                    _c("div", [
                       _c("input", {
-                        attrs: { type: "text", placeholder: task.name }
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reOrder[index].name,
+                            expression: "reOrder[index].name"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: task.name },
+                        domProps: { value: _vm.reOrder[index].name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reOrder[index],
+                              "name",
+                              $event.target.value
+                            )
+                          }
+                        }
                       })
                     ])
                   ])
@@ -23977,6 +24031,11 @@ var render = function() {
           }),
           0
         ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "button", value: "Submit" },
+          on: { click: _vm.upLoadStatic }
+        }),
         _vm._v("\n\n        " + _vm._s(_vm.ArrangeTask) + "\n    ")
       ],
       1
@@ -23990,9 +24049,9 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.previewTableSorted, function(task) {
+          _vm._l(_vm.reOrder, function(task, index) {
             return _c("tr", [
-              _c("td", [_vm._v(_vm._s(task.absolute_day))]),
+              _c("td", [_vm._v(_vm._s(index + 1))]),
               _c("td", [_vm._v(_vm._s(task.name))])
             ])
           }),
